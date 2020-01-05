@@ -1,13 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
+import DogPen from '../components/DogPen/DogPen';
+import doggieData from '../helpers/data/doggieData';
 import './App.scss';
 
-function App() {
-  return (
-    <div className="App">
+class App extends React.Component {
+  state = {
+    dogs: [],
+  }
 
-    </div>
-  );
+  componentDidMount() {
+    const dogs = doggieData.getAllDogs();
+    this.setState({ dogs });
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <DogPen dogs={this.state.dogs}/>
+      </div>
+    );
+  }
 }
 
 export default App;
