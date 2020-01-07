@@ -1,76 +1,21 @@
-const dogs = [
-  {
-    id: 'dog1',
-    imageUrl: 'https://media.defense.gov/2018/May/09/2001914642/780/780/0/180426-F-ME052-005.JPG',
-    name: 'Sparky',
-    owner: 'Mikolos Alessandro',
-    description: 'German Shepard',
-  },
-  {
-    id: 'dog2',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/0/0c/2013072515020909_MyDogs_622.jpg',
-    name: 'Janey',
-    owner: 'Erin Williams',
-    description: 'Carolina Dog',
-  },
-  {
-    id: 'dog3',
-    imageUrl: 'https://images.pexels.com/photos/770022/pexels-photo-770022.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-    name: 'Daisy',
-    owner: 'Luke Johnson',
-    description: 'Pit Bull Mix',
-  },
-  {
-    id: 'dog4',
-    imageUrl: 'https://cdn.pixabay.com/photo/2017/07/02/17/51/dog-2465171_960_720.jpg',
-    name: 'Bailey',
-    owner: 'Denise Baker',
-    description: 'Lab / Cocker Mix',
-  },
-  {
-    id: 'dog5',
-    imageUrl: 'https://live.staticflickr.com/3052/3086132328_e2041be795_b.jpg',
-    name: 'Angel',
-    owner: 'Jolie Tingen',
-    description: 'Golden Mix',
-  },
-  {
-    id: 'dog6',
-    imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQmK1YtauOiPOuEC40-dR74F7BhV8aZkH0yr9jwMme68VMTro7y',
-    name: 'Chewbacca',
-    owner: 'Hans Solo',
-    description: 'Chow Chow',
-  },
-  {
-    id: 'dog7',
-    imageUrl: 'https://p1.pxfuel.com/preview/410/725/127/husky-siberian-dog-husky-animal-mammal-fur.jpg',
-    name: 'Jack',
-    owner: 'Angus Young',
-    description: 'Husky',
-  },
-  {
-    id: 'dog8',
-    imageUrl: 'https://live.staticflickr.com/269/32683801096_5b7598b75c_b.jpg',
-    name: 'Mikey',
-    owner: 'Denise Baker',
-    description: 'Pit Bull',
-  },
-  {
-    id: 'dog9',
-    imageUrl: 'https://live.staticflickr.com/2922/32711576584_c46c14f675_b.jpg',
-    name: 'Lady',
-    owner: 'Laura Downing',
-    description: '',
-  },
-  {
-    id: 'dog10',
-    imageUrl: 'https://www.publicdomainpictures.net/pictures/310000/velka/small-dog-1570814063UV6.jpg',
-    name: 'Squirt',
-    owner: 'Tom Baker',
-    description: 'Mutt',
-  },
-];
+import axios from 'axios';
+import apiKeys from '../apiKeys.json';
 
-const getAllDogs = () => dogs;
+const baseUrl = apiKeys.firebaseKeys.databaseURL;
+
+const getAllDogs = () => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/dogs.json`)
+    .then((response) => {
+      const theDogs = response.data;
+      const dogs = [];
+      Object.keys(theDogs).forEach((fbId) => {
+        theDogs[fbId].id = fbId;
+        dogs.push(theDogs[fbId]);
+      });
+      resolve(dogs);
+      console.error('dogs', dogs);
+    })
+    .catch((error) => reject(error));
+});
 
 export default { getAllDogs };
