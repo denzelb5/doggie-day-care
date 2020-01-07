@@ -1,22 +1,29 @@
 import React from 'react';
 import DogPen from '../components/DogPen/DogPen';
-import doggieData from '../helpers/data/doggieData';
+import firebaseConnection from '../helpers/data/connection';
+// import doggieData from '../helpers/data/doggieData';
 import './App.scss';
+
+firebaseConnection();
 
 class App extends React.Component {
   state = {
-    dogs: [],
+    selectedDogId: null,
   }
 
-  componentDidMount() {
-    const dogs = doggieData.getAllDogs();
-    this.setState({ dogs });
+  // componentDidMount() {
+  //   const dogs = doggieData.getAllDogs();
+  //   this.setState({ dogs });
+  // }
+
+  setSingleDog = (selectedDogId) => {
+    this.setState({ selectedDogId });
   }
 
   render() {
     return (
       <div className="App">
-        <DogPen dogs={this.state.dogs}/>
+        <DogPen setSingleDog={this.setSingleDog}/>
       </div>
     );
   }

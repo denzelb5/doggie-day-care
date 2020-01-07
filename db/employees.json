@@ -1,0 +1,42 @@
+{
+  "employee1": {
+    "firstName": "Steve",
+    "lastName": "Smith",
+    "phone": "312-444-5555"
+  },
+  "employee2": {
+    "firstName": "Debbie",
+    "lastName": "Downer",
+    "phone": "212-436-5215"
+  },
+  "employee3": {
+    "firstName": "Rosanne",
+    "lastName": "Rosanna-Danner",
+    "phone": "212-631-2172"
+  },
+  "employee4": {
+    "firstName": "Barry",
+    "lastName": "Gibb",
+    "phone": "813-689-4189"
+  },
+  "employee5": {
+    "firstName": "Luci",
+    "lastName": "Smith",
+    "phone": "615-777-0987"
+  },
+  "employee6": {
+    "firstName": "Jane",
+    "lastName": "Whitaker",
+    "phone": "312-444-8765"
+  },
+  "employee7": {
+    "firstName": "Kathy",
+    "lastName": "Peters",
+    "phone": "414-222-0909"
+  },
+  "employee8": {
+    "firstName": "Ruby",
+    "lastName": "Williams",
+    "phone": "531-687-3434"
+  }
+}
