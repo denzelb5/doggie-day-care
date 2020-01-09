@@ -5,6 +5,7 @@ import firebaseConnection from '../helpers/data/connection';
 import Home from '../components/Home/Home';
 import Auth from '../components/Auth/Auth';
 import './App.scss';
+import MyNavbar from '../components/MyNavbar/MyNavbar';
 
 firebaseConnection();
 
@@ -32,6 +33,7 @@ class App extends React.Component {
 
     return (
       <div className="App">
+        <MyNavbar authed={authed} />
         {
         (authed) ? (<Home />) : (<Auth />)
         }
