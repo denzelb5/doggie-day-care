@@ -1,33 +1,40 @@
 import React from 'react';
-import DogPen from '../components/DogPen/DogPen';
+import firebase from 'firebase/app';
+import 'firebase/auth';
 import firebaseConnection from '../helpers/data/connection';
-import StaffRoom from '../components/StaffRoom/StaffRoom';
-// import doggieData from '../helpers/data/doggieData';
+import Home from '../components/Home/Home';
+import Auth from '../components/Auth/Auth';
 import './App.scss';
 
 firebaseConnection();
 
 class App extends React.Component {
   state = {
-    selectedDogId: null,
-    selectedEmployeeId: null,
+    authed: false,
   }
 
-
-  setSingleDog = (selectedDogId) => {
-    this.setState({ selectedDogId });
+  componentDidMount() {
+    this.removeListener = firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ authed: true });
+      } else {
+        this.setState({ authed: false });
+      }
+    });
   }
 
-  setSingleEmployee = (selectedEmployeeId) => {
-    this.setState({ selectedEmployeeId });
+  componentWillUnmount() {
+    this.removeListener();
   }
-
 
   render() {
+    const { authed } = this.state;
+
     return (
       <div className="App">
-        <DogPen setSingleDog={this.setSingleDog} />
-        <StaffRoom setSingleEmployee={this.setSingleEmployee} />
+        {
+        (authed) ? (<Home />) : (<Auth />)
+        }
       </div>
     );
   }

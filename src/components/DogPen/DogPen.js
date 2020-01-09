@@ -24,7 +24,6 @@ class DogPen extends React.Component {
     doggieData.getAllDogs()
       .then((request) => {
         this.setState({ dogs: request });
-        console.error('dogs', { dogs: request });
       })
       .catch((errorFromGetDogs) => console.error(errorFromGetDogs));
   }
