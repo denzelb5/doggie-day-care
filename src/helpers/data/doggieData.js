@@ -13,7 +13,6 @@ const getAllDogs = () => new Promise((resolve, reject) => {
         dogs.push(theDogs[fbId]);
       });
       resolve(dogs);
-      console.error('dogs', dogs);
     })
     .catch((error) => reject(error));
 });
