@@ -29,8 +29,11 @@ class StaffRoom extends React.Component {
 
   render() {
     return (
-      <div className="staffRoom d-flex flex-wrap">
+      <div className="staffRoom">
+        <div><h1>Employees</h1></div>
+        <div className="d-flex flex-wrap">
         {this.state.employees.map((employee) => (<Employee key={employee.id} employee={employee} setSingleEmployee={this.props.setSingleEmployee} />))}
+      </div>
       </div>
     );
   }
