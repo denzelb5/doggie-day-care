@@ -1,0 +1,52 @@
+{
+  "walk1": {
+    "dogId": "dog2",
+    "employeeId": "employee4",
+    "date": "10/25/2019"
+  },
+  "walk2": {
+    "dogId": "dog1",
+    "employeeId": "employee2",
+    "date": "11/25/2019"
+  },
+  "walk3": {
+    "dogId": "dog8",
+    "employeeId": "employee8",
+    "date": "01/25/2019"
+  },
+  "walk4": {
+    "dogId": "dog3",
+    "employeeId": "employee5",
+    "date": "10/20/2019"
+  },
+  "walk5": {
+    "dogId": "dog10",
+    "employeeId": "employee7",
+    "date": "04/25/2019"
+  },
+  "walk6": {
+    "dogId": "dog9",
+    "employeeId": "employee6",
+    "date": "06/25/2019"
+  },
+  "walk7": {
+    "dogId": "dog7",
+    "employeeId": "employee4",
+    "date": "10/25/2019"
+  },
+  "walk8": {
+    "dogId": "dog4",
+    "employeeId": "employee3",
+    "date": "12/24/2019"
+  },
+  "walk9": {
+    "dogId": "dog5",
+    "employeeId": "employee4",
+    "date": "10/21/2019"
+  },
+  "walk10": {
+    "dogId": "dog6",
+    "employeeId": "employee4",
+    "date": "10/21/2019"
+  }
+}
