@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Dog from '../Dogs/Dogs';
-import doggieData from '../../helpers/data/doggieData';
+// import doggieData from '../../helpers/data/doggieData';
 // import dogShape from '../../helpers/propz/dogShape';
 // import './DogPen.scss';
 
@@ -16,23 +16,24 @@ class DogPen extends React.Component {
     selectedDogId: null,
   }
 
-  componentDidMount() {
-    this.getDogData();
-  }
+  // componentDidMount() {
+  //   this.getDogData();
+  // }
 
-  getDogData = () => {
-    doggieData.getAllDogs()
-      .then((request) => {
-        this.setState({ dogs: request });
-      })
-      .catch((errorFromGetDogs) => console.error(errorFromGetDogs));
-  }
+  // getDogData = () => {
+  //   doggieData.getAllDogs()
+  //     .then((request) => {
+  //       this.setState({ dogs: request });
+  //     })
+  //     .catch((errorFromGetDogs) => console.error(errorFromGetDogs));
+  // }
 
   render() {
+    const { allDogs } = this.props;
     return (
       <div className="d-flex flex-wrap dogPen">
       {/* {dogCards} */}
-      {this.state.dogs.map((dog) => (<Dog key={dog.id} dog={dog} setSingledog={this.props.setSingleDog} />))}
+      {allDogs.map((dog) => (<Dog key={dog.id} dog={dog} setSingledog={this.props.setSingleDog} />))}
       </div>
     );
   }

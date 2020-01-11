@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Walk from '../Walks/Walks';
 import walkData from '../../helpers/data/walkData';
+// import WalkForm from '../WalkForm/WalkForm';
 import './WalkStation.scss';
 
 class WalkStation extends React.Component {
@@ -11,6 +12,7 @@ class WalkStation extends React.Component {
 
   state = {
     walks: [],
+    employees: [],
     selectedWalkId: null,
   }
 
