@@ -1,11 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import authData from '../../helpers/data/authData';
+import dogShape from '../../helpers/propz/dogShape';
+import employeeShape from '../../helpers/propz/employeeShape';
 
 import './WalkForm.scss';
 
 class WalkForm extends React.Component {
   static propTypes = {
+    allDogs: PropTypes.arrayOf(dogShape.dogShape),
+    allEmployees: PropTypes.arrayOf(employeeShape.employeeShape),
     addWalk: PropTypes.func,
     editMode: PropTypes.bool,
   }
@@ -81,23 +85,28 @@ class WalkForm extends React.Component {
   }
 
   render() {
-    const { editMode } = this.props;
+    const { allDogs, allEmployees, editMode } = this.props;
+    // const displayAllEmployees = ;
 
     return (
       <form className="walkForm">
       <select class="custom-select custom-select-lg mb-3">
-  <option selected>Open this select menu</option>
-  <option value={this.state.walkDogId} onChange={this.dogIdChange}>{this.state.walkDogId}</option>
+  <option selected>Dogs</option>
+  {
+    allDogs.map((dog) => <option key={dog.id} onChange={this.dogIdChange} value={this.state.walkDogId}>{dog.name}</option>)
+  }
+  {/* <option value={this.state.walkDogId} onChange={this.dogIdChange}>{displayAllDogs}</option> */}
 </select>
 <select class="custom-select custom-select-lg mb-3">
-  <option selected>Open this select menu</option>
-  <option value="1">One</option>
-  <option value="2">Two</option>
-  <option value="3">Three</option>
+  <option selected>Employees</option>
+  {
+    allEmployees.map((employee) => <option key={employee.id} onChange={this.employeeIdChange} value={this.state.walkEmployeeId}>{employee.firstName} {employee.lastName}</option>)
+  }
+  {/* <option value={this.state.walkEmployeeId} onChange={this.employeeIdChange}>{displayAllEmployees}</option> */}
 </select>
 <div class="input-group">
   <div class="input-group-prepend">
-    <span class="input-group-text">With textarea</span>
+    <span class="input-group-text" type="date">Enter Date</span>
   </div>
   <textarea class="form-control" aria-label="With textarea"></textarea>
 </div>
