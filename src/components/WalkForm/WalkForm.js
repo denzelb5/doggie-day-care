@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import authData from '../../helpers/data/authData';
+// import authData from '../../helpers/data/authData';
 import dogShape from '../../helpers/propz/dogShape';
 import employeeShape from '../../helpers/propz/employeeShape';
+import walkShape from '../../helpers/propz/walkShape';
 
 import './WalkForm.scss';
 
@@ -12,6 +13,7 @@ class WalkForm extends React.Component {
     allEmployees: PropTypes.arrayOf(employeeShape.employeeShape),
     addWalk: PropTypes.func,
     editMode: PropTypes.bool,
+    walkToEdit: walkShape.walkShape,
   }
 
   state = {
@@ -27,7 +29,6 @@ class WalkForm extends React.Component {
         walkDogId: walkToEdit.dogId,
         walkEmployeeId: walkToEdit.employeeId,
         walkDate: walkToEdit.date,
-        // uid: walkToEdit.uid,
       });
     }
   }
@@ -37,12 +38,13 @@ class WalkForm extends React.Component {
       this.setState(
         {
           dogId: this.props.walkToEdit.dogId,
-          walkEmployeeId: this.props.walkToEdit.employeeId,
-          walkDate: this.props.walkToEdit.date,
+          employeeId: this.props.walkToEdit.employeeId,
+          date: this.props.walkToEdit.date,
         },
       );
     }
   }
+
 
   addWalkEvent = (e) => {
     const { addWalk } = this.props;
@@ -51,7 +53,7 @@ class WalkForm extends React.Component {
       dogId: this.state.walkDogId,
       employeeId: this.state.walkEmployeeId,
       walkDate: this.state.walkDate,
-      uid: authData.getUid(),
+      // uid: authData.getUid(),
     };
     addWalk(newWalk);
     this.setState({ walkDogId: '', walkEmployeeId: '', walkDate: '' });
@@ -85,35 +87,32 @@ class WalkForm extends React.Component {
   }
 
   render() {
-    const { allDogs, allEmployees, editMode } = this.props;
-    // const displayAllEmployees = ;
+    const { allDogs, allEmployees } = this.props;
+
 
     return (
       <form className="walkForm">
-      <select class="custom-select custom-select-lg mb-3">
-  <option selected>Dogs</option>
+      <select onChange={this.dogIdChange} value={this.state.walkDogId} className="custom-select custom-select-sm mb-3">
+  <option>Dogs</option>
   {
-    allDogs.map((dog) => <option key={dog.id} onChange={this.dogIdChange} value={this.state.walkDogId}>{dog.name}</option>)
+    allDogs.map((dog) => <option key={dog.id} >{dog.name}</option>)
   }
-  {/* <option value={this.state.walkDogId} onChange={this.dogIdChange}>{displayAllDogs}</option> */}
 </select>
-<select class="custom-select custom-select-lg mb-3">
-  <option selected>Employees</option>
+
+<select onChange={this.employeeIdChange} value={this.state.walkEmployeeId} className="custom-select custom-select-sm mb-3">
+  <option>Employees</option>
   {
-    allEmployees.map((employee) => <option key={employee.id} onChange={this.employeeIdChange} value={this.state.walkEmployeeId}>{employee.firstName} {employee.lastName}</option>)
+    allEmployees.map((employee) => <option key={employee.id}>{employee.firstName} {employee.lastName}</option>)
   }
-  {/* <option value={this.state.walkEmployeeId} onChange={this.employeeIdChange}>{displayAllEmployees}</option> */}
 </select>
-<div class="input-group">
-  <div class="input-group-prepend">
-    <span class="input-group-text" type="date">Enter Date</span>
-  </div>
-  <textarea class="form-control" aria-label="With textarea"></textarea>
+
+<div className="form-group">
+  <label htmlFor='dateSelection'>Select a Date</label>
+  <input type='date' className='form-control' id='dateSelection' value={this.state.dateOfWalk} onChange={this.dateChange} />
 </div>
-{
-  (editMode) ? (<button className="btn btn-warning" onClick={this.updateWalkEvent}>Update Walk</button>)
-    : <button className="btn btn-warning" onClick={this.addWalkEvent}>AddWalk</button>
-}
+
+
+ <button className="btn btn-warning" onClick={this.addWalkEvent}>Add Walk</button>
 </form>
 
     );

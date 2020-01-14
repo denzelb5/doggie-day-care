@@ -2,11 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // import employeeData from '../../helpers/data/employeeData';
 import Employee from '../Employee/Employee';
+import employeeShape from '../../helpers/propz/employeeShape';
 
 import './StaffRoom.scss';
 
 class StaffRoom extends React.Component {
   static propTypes = {
+    allEmployees: PropTypes.arrayOf(employeeShape.employeeShape),
     setSingleEmployee: PropTypes.func,
   }
 
