@@ -33,17 +33,17 @@ class WalkForm extends React.Component {
     }
   }
 
-  componentDidUpdate(prevProps) {
-    if ((prevProps.walkToEdit.id !== this.props.walkToEdit.id) && this.props.editMode) {
-      this.setState(
-        {
-          dogId: this.props.walkToEdit.dogId,
-          employeeId: this.props.walkToEdit.employeeId,
-          date: this.props.walkToEdit.date,
-        },
-      );
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  //   if ((prevProps.walkToEdit.id !== this.props.walkToEdit.id) && this.props.editMode) {
+  //     this.setState(
+  //       {
+  //         dogId: this.props.walkToEdit.dogId,
+  //         employeeId: this.props.walkToEdit.employeeId,
+  //         date: this.props.walkToEdit.date,
+  //       },
+  //     );
+  //   }
+  // }
 
 
   addWalkEvent = (e) => {
@@ -55,6 +55,7 @@ class WalkForm extends React.Component {
       walkDate: this.state.walkDate,
       // uid: authData.getUid(),
     };
+    console.error('newWalk', newWalk);
     addWalk(newWalk);
     this.setState({ walkDogId: '', walkEmployeeId: '', walkDate: '' });
   }
@@ -108,7 +109,7 @@ class WalkForm extends React.Component {
 
 <div className="form-group">
   <label htmlFor='dateSelection'>Select a Date</label>
-  <input type='date' className='form-control' id='dateSelection' value={this.state.dateOfWalk} onChange={this.dateChange} />
+  <input type='date' className='form-control' id='dateSelection' value={this.state.walkDate} onChange={this.dateChange} />
 </div>
 
 

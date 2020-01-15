@@ -51,7 +51,7 @@ class Walk extends React.Component {
         <div className="card-body">
           <h5 className="card-title">Dog: {walk.dogId}</h5>
           <h5 className="card-title">Walker: {walk.employeeId}</h5>
-          <h5 className="card-title">{moment(walk.date).format('LL')}</h5>
+          <h5 className="card-title">{moment(walk.walkDate).format('LL')}</h5>
           <button className="btn btn-warning" onClick={this.setEditMode}>Edit</button>
           <button className="btn btn-danger" onClick={this.deleteWalkEvent}>Delete</button>
         </div>

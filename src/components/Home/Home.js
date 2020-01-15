@@ -51,9 +51,7 @@ class Home extends React.Component {
 
   addWalkData = (newWalk) => {
     walkData.addWalk(newWalk)
-      .then(() => {
-        this.getWalkData(this.props);
-      })
+      .then(() => this.getWalkData())
       .catch((error) => console.error(error));
   }
 
@@ -91,8 +89,8 @@ class Home extends React.Component {
       <div className="Home">
         <DogPen setSingleDog={this.setSingleDog} allDogs={this.state.allDogs} />
         <StaffRoom setSingleEmployee={this.setSingleEmployee} allEmployees={this.state.allEmployees} />
-        <WalkStation setSingleWalk={this.setSingleWalk} deleteSingleWalk={this.deleteSingleWalk} dogs={this.state.allDogs} allEmployees={this.state.allEmployees} />
-  <WalkForm allDogs={this.state.allDogs} allEmployees={this.state.allEmployees} walkToEdit={this.state.walkToEdit} addWalk={this.state.addWalkData} />
+        <WalkStation setSingleWalk={this.setSingleWalk} deleteSingleWalk={this.deleteSingleWalk} dogs={this.state.allDogs} allEmployees={this.state.allEmployees} allWalks={this.state.allWalks} />
+  <WalkForm allDogs={this.state.allDogs} allEmployees={this.state.allEmployees} editMode={this.editMode} walkToEdit={this.walkToEdit} addWalk={this.addWalkData} />
         </div>
     );
   }

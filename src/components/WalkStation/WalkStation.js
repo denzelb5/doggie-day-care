@@ -56,12 +56,12 @@ class WalkStation extends React.Component {
   }
 
   render() {
-    const { deleteSingleWalk } = this.props;
+    const { deleteSingleWalk, dogs, allEmployees, allWalks } = this.props;
     return (
       <div>
         <div><h1>Walk Schedule</h1></div>
         <div className="d-flex flex-wrap">
-     {this.state.walks.map((walk) => (<Walk key={walk.id} walk={walk} setSingleWalk={this.props.setSingleWalk} deleteSingleWalk={deleteSingleWalk} removeSelectedWalkId={this.removeSelectedWalkId}/>))}
+     {allWalks.map((walk) => (<Walk key={walk.id} walk={walk} setSingleWalk={this.props.setSingleWalk} deleteSingleWalk={deleteSingleWalk} removeSelectedWalkId={this.removeSelectedWalkId}/>))}
       </div>
       </div>
     );
