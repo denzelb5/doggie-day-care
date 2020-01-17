@@ -5,6 +5,7 @@ import WalkStation from '../WalkStation/WalkStation';
 import doggieData from '../../helpers/data/doggieData';
 import employeeData from '../../helpers/data/employeeData';
 import WalkForm from '../WalkForm/WalkForm';
+import walkData from '../../helpers/data/walkData';
 
 class Home extends React.Component {
   state = {
@@ -21,6 +22,7 @@ class Home extends React.Component {
   componentDidMount() {
     this.getDogData();
     this.getEmployeeData();
+    this.getWalkData();
   }
 
   getDogData = () => {
@@ -39,7 +41,36 @@ class Home extends React.Component {
       .catch((error) => console.error(error));
   }
 
-  // updateWalk = (walkId, updatedWalk)
+  getWalkData = () => {
+    walkData.getWalks()
+      .then((request) => {
+        this.setState({ allWalks: request });
+      })
+      .catch((error) => console.error(error));
+  }
+
+  addWalkData = (newWalk) => {
+    walkData.addWalk(newWalk)
+      .then(() => this.getWalkData())
+      .catch((error) => console.error(error));
+  }
+
+  deleteSingleWalk = (walkId) => {
+    walkData.deleteWalk(walkId)
+      .then(() => {
+        this.getWalkData();
+      })
+      .catch((error) => console.error(error));
+  }
+
+  setWalkToEdit = (walk) => {
+    this.setState({ walkToEdit: walk });
+  }
+
+  removeSelectedWalkId = (e) => {
+    this.preventDefault();
+    const { setSingleWalk } = this.props;
+  }
 
   setSingleDog = (selectedDogId) => {
     this.setState({ selectedDogId });
@@ -58,9 +89,8 @@ class Home extends React.Component {
       <div className="Home">
         <DogPen setSingleDog={this.setSingleDog} allDogs={this.state.allDogs} />
         <StaffRoom setSingleEmployee={this.setSingleEmployee} allEmployees={this.state.allEmployees} />
-        <WalkStation setSingleWalk={this.setSingleWalk} dogs={this.state.allDogs} allEmployees={this.state.allEmployees}/>
-        {/* <Walk setSingleWalk={this.setSingleWalk} /> */}
-       <WalkForm allDogs={this.state.allDogs} allEmployees={this.state.allEmployees} walkToEdit={this.state.walkToEdit} />
+        <WalkStation setSingleWalk={this.setSingleWalk} deleteSingleWalk={this.deleteSingleWalk} dogs={this.state.allDogs} allEmployees={this.state.allEmployees} allWalks={this.state.allWalks} />
+  <WalkForm allDogs={this.state.allDogs} allEmployees={this.state.allEmployees} editMode={this.editMode} walkToEdit={this.walkToEdit} addWalk={this.addWalkData} />
         </div>
     );
   }

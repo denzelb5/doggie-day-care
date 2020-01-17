@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './Employee.scss';
+import employeeShape from '../../helpers/propz/employeeShape';
 
 class Employee extends React.Component {
   static propTypes = {
+    employee: employeeShape.employeeShape,
     setSingleEmployee: PropTypes.func,
   }
 
