@@ -39,6 +39,8 @@ class Home extends React.Component {
       .catch((error) => console.error(error));
   }
 
+  // updateWalk = (walkId, updatedWalk)
+
   setSingleDog = (selectedDogId) => {
     this.setState({ selectedDogId });
   }
